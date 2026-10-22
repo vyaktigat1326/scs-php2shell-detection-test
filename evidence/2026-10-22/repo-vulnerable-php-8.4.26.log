@@ -1,0 +1,33 @@
+2026-10-22 08:21:29 INF Trivy version: v0.74.1-0.20260828105258-a2474b841016 context=trivy-plugin
+2026-10-22 08:21:29 INF Plugin version: v0.230.0 context=trivy-plugin
+2026-10-22 08:21:29 INF [secret] Secret rules resolved from built-in commercial rules and written to "/tmp/aqua/0fe99345-f5f8-4964-af25-a76805118c2e/trivy-secret.yaml" context=trivy-plugin
+2026-10-22 08:21:29 INF [runner] Initializing runner for Scan (main scan runner) context=trivy-plugin
+2026-10-22 08:21:29 INF [runner] Scan runner initialized successfully context=trivy-plugin
+2026-10-22T08:21:29+05:30	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-22T08:21:29+05:30	INFO	[secret] Secret scanning is enabled
+2026-10-22T08:21:29+05:30	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-10-22T08:21:29+05:30	INFO	[secret] Please see https://trivy.dev/docs/dev/guide/scanner/secret#recommendation for faster secret detection
+2026-10-22T08:21:29+05:30	INFO	[secret] Loading the config file for secret scanning...	config_path="/tmp/aqua/0fe99345-f5f8-4964-af25-a76805118c2e/trivy-secret.yaml"
+2026-10-22T08:21:30+05:30	INFO	Number of language-specific files	num=1
+2026-10-22T08:21:30+05:30	INFO	[composer] Detecting vulnerabilities...
+2026-10-22 08:21:30 INF [report] Initializing runner for Report (writing output) context=trivy-plugin
+2026-10-22 08:21:30 INF [report] Report runner initialized, writing report context=trivy-plugin
+2026-10-22 08:21:30 INF [report] Report written successfully context=trivy-plugin
+       .::::::--===-                                                                     
+     .-========+***+         .:--:.          .::--.      .--         .-:      .:--:.     
+   ..::::::::::=***+      :*%%%##%%%=      =#%%%#%%%*:   -%%:        +%#    =#%%%#%%%*:  
+ .--.          -***+     =%%+.    :*%%:   *%%-.   .=%%+  -%%:        +%#  .%%*:    .=%%+ 
+----.          -***+    .%%=        *%%  +%%        :%%- -%%:        +%#  #%#        -%%:
+----.          -***+    :%%-        +%%. +%%        .%%= :%%:        *%*  %%*        :%%-
+----.          -**+:     *%%-       +%%. .%%*.      .%%=  *%%-     .+%%:  :%%+       :%%-
+----.          :+-        =%%%*+++++#%%.  .+%%#*++- .%%=   -#%%*++#%%*.    .*%%*+++++*%%-
+####***********.            .-+++++++++      :==+:  .%%=     .-====:          -=++++++++.
+############*-                                      .%%=                                 
+.:::::::::::                                        .%%=                                 
+                                                    .%%=                                 
+                                                    .%%=                                 
+
+
+Policy Summary
+[TOTAL: 0 | PASSED: 0 | WARNED: 0 | FAILED: 0]
+

@@ -1,0 +1,48 @@
+{
+  "ArtifactID": "sha256:2963390555ccb5ce59303307c2818b118d8248c7a4b228fb58c3f790b8cee6d3",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "CreatedAt": "2026-10-22T08:21:35.178878+05:30",
+  "Metadata": {
+    "Author": "Manoj Shastha Madriki \u003cmanojshastha.madriki@aquasec.com\u003e",
+    "Branch": "case/patched-php-8.4.27",
+    "Commit": "e00cfe3428d21ed7170ab025c096690c202c309b",
+    "CommitMsg": "Single-case branch: patched-php-8.4.27 at repository root\n\nCo-Authored-By: Claude Opus 5.5 \u003cnoreply@anthropic.com\u003e",
+    "Committer": "Manoj Shastha Madriki \u003cmanojshastha.madriki@aquasec.com\u003e",
+    "RepoURL": "file:///Users/madrikimanojshastha/go/src/github.org/Argon/scs-php2shell-detection-test"
+  },
+  "ReportID": "01a16185-678a-7d5d-86b3-74913d100498",
+  "Results": [
+    {
+      "Class": "lang-pkgs",
+      "Packages": [
+        {
+          "AnalyzedBy": "composer",
+          "ID": "psr/log@3.0.2",
+          "Identifier": {
+            "PURL": "pkg:composer/psr/log@3.0.2",
+            "UID": "384cdad470e3bfd"
+          },
+          "Licenses": [
+            "MIT"
+          ],
+          "Locations": [
+            {
+              "EndLine": 58,
+              "StartLine": 9
+            }
+          ],
+          "Name": "psr/log",
+          "Relationship": "direct",
+          "Version": "3.0.2"
+        }
+      ],
+      "Target": "composer.lock",
+      "Type": "composer"
+    }
+  ],
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "dev"
+  }
+}

@@ -1,0 +1,20 @@
+BILLY_ARTIFACT {"id":"aqua-scs-test/php2shell-vulnerable-php-8.4.26/unknown","name":"aqua-scs-test/php2shell-vulnerable-php-8.4.26","version":"unknown","type":"php"} err=<nil>
+       .::::::--===-                                                                     
+     .-========+***+         .:--:.          .::--.      .--         .-:      .:--:.     
+   ..::::::::::=***+      :*%%%##%%%=      =#%%%#%%%*:   -%%:        +%#    =#%%%#%%%*:  
+ .--.          -***+     =%%+.    :*%%:   *%%-.   .=%%+  -%%:        +%#  .%%*:    .=%%+ 
+----.          -***+    .%%=        *%%  +%%        :%%- -%%:        +%#  #%#        -%%:
+----.          -***+    :%%-        +%%. +%%        .%%= :%%:        *%*  %%*        :%%-
+----.          -**+:     *%%-       +%%. .%%*.      .%%=  *%%-     .+%%:  :%%+       :%%-
+----.          :+-        =%%%*+++++#%%.  .+%%#*++- .%%=   -#%%*++#%%*.    .*%%*+++++*%%-
+####***********.            .-+++++++++      :==+:  .%%=     .-====:          -=++++++++.
+############*-                                      .%%=                                 
+.:::::::::::                                        .%%=                                 
+                                                    .%%=                                 
+                                                    .%%=                                 
+
+
+Policy Summary
+[TOTAL: 0 | PASSED: 0 | WARNED: 0 | FAILED: 0]
+
+BILLY_SBOM_WRITTEN /private/tmp/claude-501/-Users-madrikimanojshastha-go-src-github-org-Argon/c64ed45a-b6a4-41d0-ad9c-109fa40f0547/scratchpad/out2/billy-vuln-dir.cdx.json

@@ -1,0 +1,43 @@
+// Local harness: drives Billy's real Runner.Generate (sbom report format) and its
+// real artifact detector with Billy's own MockArgonClientAdapter, so no auth or
+// upload happens. Usage: billy-harness <artifact-path> <sbom-out.json>
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/aquasec-com/go-environments"
+	"github.com/aquasec-com/go-utils/logger"
+	"github.com/argonsecurity/billy/pkg/detector"
+	"github.com/argonsecurity/billy/pkg/enums/formats"
+	"github.com/argonsecurity/billy/pkg/http"
+	"github.com/argonsecurity/billy/pkg/models"
+	"github.com/argonsecurity/billy/pkg/runner"
+)
+
+func main() {
+	_ = logger.InitLogger("info", "", "", true, true)
+	artifactPath, out := os.Args[1], os.Args[2]
+	env := environments.DetectEnvironment()
+	inputs := models.Inputs{ArtifactPath: artifactPath, ReportFormat: formats.Sbom, SBOMOutputFilePath: out}
+	client := &http.MockArgonClientAdapter{}
+
+	conf, err := env.GetConfiguration()
+	if err != nil {
+		fmt.Println("configuration error:", err)
+	} else {
+		artifact, err := detector.GetArtifactMetadata(context.Background(), inputs, conf, client)
+		b, _ := json.Marshal(artifact)
+		fmt.Printf("BILLY_ARTIFACT %s err=%v\n", b, err)
+	}
+
+	r := runner.NewRunner(env, inputs, "local-harness", nil, client)
+	if _, err := r.Generate(context.Background()); err != nil {
+		fmt.Println("BILLY_GENERATE_ERROR", err)
+		os.Exit(1)
+	}
+	fmt.Println("BILLY_SBOM_WRITTEN", out)
+}
