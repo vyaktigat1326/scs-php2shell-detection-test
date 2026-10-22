@@ -1,0 +1,41 @@
+# DRAFT for human review. Submits each PHP2Shell case to the SCS Dev artifact
+# pipeline (Billy -> billy-server -> manifest-service), following the "Testing in
+# pipeline" steps in argonsecurity/billy README. Billy refuses to run on
+# localhost, so this has to run in CI. Credentials are read from repository
+# secrets by reference only.
+name: billy-artifact-scan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  billy:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [vulnerable-php-8.4.26, patched-php-8.4.27]
+    env:
+      BILLY_SERVER: https://dev-aqua-billy.argon.io
+      CSPM_URL: https://stage.api.cloudsploit.com
+      AQUA_KEY: ${{ secrets.AQUA_KEY_DEV }}
+      AQUA_SECRET: ${{ secrets.AQUA_SECRET_DEV }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify fixture binaries
+        run: ./scripts/verify-runtime.sh
+      - name: Install Billy (dev)
+        run: curl -sL https://download-dev.codesec.aquasec.com/billy/install.sh | sh -s "${{ secrets.BILLY_INSTALL_TOKEN }}"
+      - name: Billy artifact scan
+        run: |
+          billy generate \
+            --artifact-path "cases/${{ matrix.case }}" \
+            --sbom-file-path "sbom-${{ matrix.case }}.cdx.json" \
+            -o "manifest-${{ matrix.case }}.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: billy-${{ matrix.case }}
+          path: |
+            sbom-${{ matrix.case }}.cdx.json
+            manifest-${{ matrix.case }}.json
