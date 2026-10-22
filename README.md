@@ -42,6 +42,19 @@ Each case contains:
 A version requirement in `composer.json` declares what the app *needs*. It does
 not prove which interpreter is installed. Only the binaries prove that.
 
+## Positive controls (`controls/`)
+
+These prove the scan pipeline reports findings when it can see the component.
+
+| Control | Contents | Expected |
+|---|---|---|
+| `composer-known-cve-guzzle-7.4.4/` | `guzzlehttp/guzzle` 7.4.4 locked by real Composer (security blocking disabled for the lock only) | Composer CVEs reported |
+| `debian13-dpkg-php8.4.24-vulnerable/rootfs/` | `etc/os-release`, `etc/debian_version`, `var/lib/dpkg/status` copied from a Debian 13 system with `php8.4-*` `8.4.24-1~deb13u1` installed | both PHP2Shell CVEs on the `php8.4-*` packages, **when the scan root is `rootfs/`** |
+| `debian13-dpkg-php8.4.27-patched/rootfs/` | same, with `8.4.27-1~deb13u1` | neither CVE |
+
+Each case and control also has its own branch (`case/*`, `control/*`) with the
+fixture at the repository root, so a repo scan of that branch sees one case only.
+
 ## Reproduce and verify
 
 ```bash
