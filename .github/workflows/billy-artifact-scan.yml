@@ -55,7 +55,9 @@ jobs:
         run: |
           name="$(basename "$(dirname "${{ matrix.artifact }}")")"
           echo "name=$name" >> "$GITHUB_OUTPUT"
+          # --strict: without it Billy exits 0 on auth/plan errors and writes nothing.
           ./billy generate \
+            --strict \
             --access-token "${{ github.token }}" \
             --cspm-url "$CSPM_URL" \
             --artifact-path "${{ matrix.artifact }}" \
