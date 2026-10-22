@@ -1,0 +1,20 @@
+{
+  "ArtifactID": "sha256:395e360059b5addac9719405aeff91c360ede5829095f5bfa46ef878034751fc",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "CreatedAt": "2026-10-22T08:43:51.50015+05:30",
+  "Metadata": {
+    "Author": "Manoj Shastha Madriki \u003cmanojshastha.madriki@aquasec.com\u003e",
+    "Branch": "control/debian13-dpkg-php8.4.27-patched",
+    "Commit": "adcaf4b9130dc7d6a3f057463ed4dc5d3c428d68",
+    "CommitMsg": "Add genuine etc/debian_version\n\nCo-Authored-By: Claude Opus 5.5 \u003cnoreply@anthropic.com\u003e",
+    "Committer": "Manoj Shastha Madriki \u003cmanojshastha.madriki@aquasec.com\u003e",
+    "RepoURL": "file:///Users/madrikimanojshastha/go/src/github.org/Argon/scs-php2shell-detection-test"
+  },
+  "ReportID": "01a16199-cb8c-7242-9d3c-62f85a4111ab",
+  "Results": [],
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "dev"
+  }
+}

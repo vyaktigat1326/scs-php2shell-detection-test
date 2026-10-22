@@ -1,0 +1,38 @@
+2026-10-22 08:43:51 INF Trivy version: v0.74.1-0.20260828105258-a2474b841016 context=trivy-plugin
+2026-10-22 08:43:51 INF Plugin version: v0.230.0 context=trivy-plugin
+2026-10-22 08:43:51 INF [secret] Secret rules resolved from built-in commercial rules and written to "/tmp/aqua/f5f936b1-33e3-454c-883d-4339a6ab07d5/trivy-secret.yaml" context=trivy-plugin
+2026-10-22 08:43:51 INF [runner] Initializing runner for Scan (main scan runner) context=trivy-plugin
+2026-10-22 08:43:51 INF [runner] Scan runner initialized successfully context=trivy-plugin
+2026-10-22T08:43:51+05:30	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-22T08:43:51+05:30	INFO	[secret] Secret scanning is enabled
+2026-10-22T08:43:51+05:30	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-10-22T08:43:51+05:30	INFO	[secret] Please see https://trivy.dev/docs/dev/guide/scanner/secret#recommendation for faster secret detection
+2026-10-22T08:43:51+05:30	INFO	[secret] Loading the config file for secret scanning...	config_path="/tmp/aqua/f5f936b1-33e3-454c-883d-4339a6ab07d5/trivy-secret.yaml"
+2026-10-22T08:43:52+05:30	INFO	Detected OS	family="debian" version="13.7"
+2026-10-22T08:43:52+05:30	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=101
+2026-10-22T08:43:52+05:30	INFO	Number of language-specific files	num=0
+2026-10-22T08:43:52+05:30	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/dev/guide/scanner/vulnerability#severity-selection for details.
+2026-10-22 08:43:52 INF [report] Initializing runner for Report (writing output) context=trivy-plugin
+2026-10-22 08:43:52 INF [report] Report runner initialized, writing report context=trivy-plugin
+2026-10-22 08:43:52 INF [report] Report written successfully context=trivy-plugin
+Scan Results Summary - 
+Vulnerability Findings: 190 (UNKNOWN:1, LOW:73, MEDIUM:62, HIGH:53, CRITICAL:1) 
+
+       .::::::--===-                                                                     
+     .-========+***+         .:--:.          .::--.      .--         .-:      .:--:.     
+   ..::::::::::=***+      :*%%%##%%%=      =#%%%#%%%*:   -%%:        +%#    =#%%%#%%%*:  
+ .--.          -***+     =%%+.    :*%%:   *%%-.   .=%%+  -%%:        +%#  .%%*:    .=%%+ 
+----.          -***+    .%%=        *%%  +%%        :%%- -%%:        +%#  #%#        -%%:
+----.          -***+    :%%-        +%%. +%%        .%%= :%%:        *%*  %%*        :%%-
+----.          -**+:     *%%-       +%%. .%%*.      .%%=  *%%-     .+%%:  :%%+       :%%-
+----.          :+-        =%%%*+++++#%%.  .+%%#*++- .%%=   -#%%*++#%%*.    .*%%*+++++*%%-
+####***********.            .-+++++++++      :==+:  .%%=     .-====:          -=++++++++.
+############*-                                      .%%=                                 
+.:::::::::::                                        .%%=                                 
+                                                    .%%=                                 
+                                                    .%%=                                 
+
+
+Policy Summary
+[TOTAL: 0 | PASSED: 0 | WARNED: 0 | FAILED: 0]
+

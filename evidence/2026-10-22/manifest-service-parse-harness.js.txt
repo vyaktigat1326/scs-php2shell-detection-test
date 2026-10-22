@@ -1,0 +1,20 @@
+// Runs manifest-service's real SBOM parsers (what saveManifest stores) on Billy SBOMs.
+// Usage: node run.js <manifest-service build dir> <sbom.cdx.json>...
+const path = require("path");
+const fs = require("fs");
+const [buildDir, ...sboms] = process.argv.slice(2);
+const { extractDependenciesFromSbom, extractVulnerabilitiesFromSbom } = require(path.join(buildDir, "api/services/sbom-parsing.service.js"));
+for (const file of sboms) {
+  const sbom = JSON.parse(fs.readFileSync(file, "utf8"));
+  const deps = extractDependenciesFromSbom(sbom);
+  const vulns = extractVulnerabilitiesFromSbom(sbom, deps);
+  const php = deps.filter((d) => /(^|\/)php/i.test(d.name || "") || /php/i.test(d.purl || ""));
+  const p2s = vulns.filter((v) => /CVE-2026-10961[89]/.test(v.id));
+  console.log(JSON.stringify({
+    sbom: path.basename(file),
+    storedDependencies: deps.length,
+    phpDependencies: php.map((d) => d.purl || `${d.name}@${d.version}`),
+    storedVulnerabilities: vulns.length,
+    php2shell: p2s.map((v) => ({ id: v.id, severity: v.severity, affects: v.affects })),
+  }));
+}

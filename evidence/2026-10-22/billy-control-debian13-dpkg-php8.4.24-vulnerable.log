@@ -1,0 +1,20 @@
+BILLY_ARTIFACT {"id":"/private/tmp/claude-501/-Users-madrikimanojshastha-go-src-github-org-Argon/c64ed45a-b6a4-41d0-ad9c-109fa40f0547/scratchpad/billy-run/unknown","name":"/private/tmp/claude-501/-Users-madrikimanojshastha-go-src-github-org-Argon/c64ed45a-b6a4-41d0-ad9c-109fa40f0547/scratchpad/billy-run","version":"unknown","type":"unknown"} err=<nil>
+       .::::::--===-                                                                     
+     .-========+***+         .:--:.          .::--.      .--         .-:      .:--:.     
+   ..::::::::::=***+      :*%%%##%%%=      =#%%%#%%%*:   -%%:        +%#    =#%%%#%%%*:  
+ .--.          -***+     =%%+.    :*%%:   *%%-.   .=%%+  -%%:        +%#  .%%*:    .=%%+ 
+----.          -***+    .%%=        *%%  +%%        :%%- -%%:        +%#  #%#        -%%:
+----.          -***+    :%%-        +%%. +%%        .%%= :%%:        *%*  %%*        :%%-
+----.          -**+:     *%%-       +%%. .%%*.      .%%=  *%%-     .+%%:  :%%+       :%%-
+----.          :+-        =%%%*+++++#%%.  .+%%#*++- .%%=   -#%%*++#%%*.    .*%%*+++++*%%-
+####***********.            .-+++++++++      :==+:  .%%=     .-====:          -=++++++++.
+############*-                                      .%%=                                 
+.:::::::::::                                        .%%=                                 
+                                                    .%%=                                 
+                                                    .%%=                                 
+
+
+Policy Summary
+[TOTAL: 0 | PASSED: 0 | WARNED: 0 | FAILED: 0]
+
+BILLY_SBOM_WRITTEN /private/tmp/claude-501/-Users-madrikimanojshastha-go-src-github-org-Argon/c64ed45a-b6a4-41d0-ad9c-109fa40f0547/scratchpad/out2/billy-control-debian13-dpkg-php8.4.24-vulnerable.cdx.json
