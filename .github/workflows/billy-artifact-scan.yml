@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      # One at a time: concurrent manifest saves that share CVE ids hit an E11000
+      # race in manifest-service's vulnerabilities upsert (seen in SCS Dev 2026-10-22).
+      max-parallel: 1
       matrix:
         artifact:
           - artifacts/debian13-php8.4.24-vulnerable/rootfs
@@ -61,7 +64,7 @@ jobs:
             --access-token "${{ github.token }}" \
             --cspm-url "$CSPM_URL" \
             --artifact-path "${{ matrix.artifact }}" \
-            --sbom-file-path "sbom-$name.cdx.json" \
+            --sbom-path "sbom-$name.cdx.json" \
             --output "manifest-$name.json" \
             --skip-policy-exit-code
 
