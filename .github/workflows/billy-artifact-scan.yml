@@ -36,10 +36,19 @@ jobs:
       - name: Verify fixture checksums
         run: cd "$(dirname "${{ matrix.artifact }}")" && sha256sum -c SHA256SUMS --quiet
 
-      - name: Download Billy Dev
+      # The dev installer pulls from the private argonsecurity/billy releases, which this
+      # repo's github.token can't read. The public installer (billy-e2e "Download Billy
+      # Prod") installs the same Billy version (0.1.406 on 2026-10-22) from
+      # argonsecurity/releases with checksum verification; BILLY_SERVER above still
+      # sends manifests to SCS Dev.
+      - name: Download Billy
         run: |
-          curl -sLo install.sh download.dev-aqua.codesec.aquasec.com/billy/install.sh
-          BINDIR="." DEBUG="true" sh install.sh ${{ github.token }}
+          curl -sLo install.sh download.codesec.aquasec.com/billy/install.sh
+          curl -sLo install.sh.checksum https://github.com/argonsecurity/releases/releases/latest/download/install.sh.checksum
+          sha256sum --check install.sh.checksum
+          BINDIR="." sh install.sh
+          rm install.sh install.sh.checksum
+          ./billy --version || true
 
       - name: Generate manifest
         id: generate
