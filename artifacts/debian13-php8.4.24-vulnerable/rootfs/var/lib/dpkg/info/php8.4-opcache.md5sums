@@ -1,0 +1,5 @@
+951753d75a6d2e11387be7efaf0350e3  usr/lib/php/20240924/opcache.so
+66b5f6b35300421054d4979cbc492779  usr/share/bug/php8.4-opcache/control
+3b52c6e43ba24d6416c48857e0e9ac45  usr/share/bug/php8.4-opcache/script
+96b03ef454df43d1883225ad264aa697  usr/share/lintian/overrides/php8.4-opcache
+5454a910708937435d02de816081a39c  usr/share/php8.4-opcache/opcache/opcache.ini

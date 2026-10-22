@@ -1,0 +1,106 @@
+#!/bin/sh
+
+set -e
+
+if [ -e /usr/share/apache2/apache2-maintscript-helper ]; then
+    . /usr/share/apache2/apache2-maintscript-helper
+
+    php_enable() {
+	# Don't enable PHP FPM by default when Apache 2 is installed
+	apache2_msg notice "NOTICE: Not enabling PHP 8.4 FPM by default."
+	apache2_msg notice "NOTICE: To enable PHP 8.4 FPM in Apache2 do:"
+	apache2_msg notice "NOTICE: a2enmod proxy_fcgi setenvif"
+	apache2_msg notice "NOTICE: a2enconf php8.4-fpm"
+	apache2_msg notice "NOTICE: You are seeing this message because you have apache2 package installed."
+	return 1
+    }
+else
+    php_enable() {
+	# Don't enable PHP FPM by default when Apache 2 is not installed
+	return 1
+    }
+fi
+
+if [ "$1" = "triggered" ] && [ "$2" = "/etc/php/8.4/fpm/conf.d" ]; then
+    invoke-rc.d php8.4-fpm restart
+fi
+
+CONFDIR=/etc/php/8.4/fpm/conf.d
+
+if [ "$1" = "configure" ]; then
+    phpini="/etc/php/8.4/fpm/php.ini"
+
+    if [ "fpm" = "cli" ]; then
+	ucf /usr/lib/php/8.4/php.ini-production.fpm $phpini
+    else
+	ucf /usr/lib/php/8.4/php.ini-production $phpini
+    fi
+    ucfr php8.4-fpm $phpini
+
+    if [ -e /usr/lib/php/php-maintscript-helper ]; then
+	. /usr/lib/php/php-maintscript-helper
+	
+	mods=$(phpquery -M -v 8.4)
+	for mod in $mods; do
+	    php_invoke enmod 8.4 fpm $mod
+	done
+    fi
+
+    if [ -n "$2" ] && dpkg --compare-versions "$2" lt "7.0.3-2~"; then
+	rm -f /etc/php/8.4/fpm/conf.d/20-opcache.ini;
+    fi	    
+fi
+
+# Automatically added by dh_apache2/UNDECLARED
+if php_enable; then
+	if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
+		. /usr/share/apache2/apache2-maintscript-helper
+		for conf in php8.4-fpm  ; do
+			apache2_invoke enconf $conf  || exit 1
+		done
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_systemd_enable/13.24.2
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
+	# The following line should be removed in trixie or trixie+1
+	deb-systemd-helper unmask 'php8.4-fpm.service' >/dev/null || true
+
+	# was-enabled defaults to true, so new installations run enable.
+	if deb-systemd-helper --quiet was-enabled 'php8.4-fpm.service'; then
+		# Enables the unit on first installation, creates new
+		# symlinks on upgrades if the unit file has changed.
+		deb-systemd-helper enable 'php8.4-fpm.service' >/dev/null || true
+	else
+		# Update the statefile to add new symlinks (if any), which need to be
+		# cleaned up on purge. Also remove old symlinks.
+		deb-systemd-helper update-state 'php8.4-fpm.service' >/dev/null || true
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_installinit/13.24.2
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
+	if [ -x "$(command -v systemd-tmpfiles)" ]; then
+		systemd-tmpfiles ${DPKG_ROOT:+--root="$DPKG_ROOT"} --create php8.4-fpm.conf || true
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_installdeb/13.24.2
+dpkg-maintscript-helper rm_conffile /etc/init/php8.4-fpm.conf 7.4.3-4\~ php8.4-fpm -- "$@"
+# End automatically added section
+# Automatically added by dh_installinit/13.24.2
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
+	if [ -z "$DPKG_ROOT" ] && [ -x "/etc/init.d/php8.4-fpm" ]; then
+		update-rc.d php8.4-fpm defaults >/dev/null
+		if [ -n "$2" ]; then
+			_dh_action=restart
+		else
+			_dh_action=start
+		fi
+		invoke-rc.d php8.4-fpm $_dh_action || exit 1
+	fi
+fi
+# End automatically added section
+
+
+exit 0

@@ -1,0 +1,5 @@
+39775b338840012fcb0ad9562ab50b4a  usr/lib/php/20240924/readline.so
+66b5f6b35300421054d4979cbc492779  usr/share/bug/php8.4-readline/control
+780cc12a894b7686f9299961a49b7f2a  usr/share/bug/php8.4-readline/script
+1a4b91fc8da2949561adb156a0a480f9  usr/share/lintian/overrides/php8.4-readline
+04d2378963688a881deb69b0441f2a80  usr/share/php8.4-readline/readline/readline.ini

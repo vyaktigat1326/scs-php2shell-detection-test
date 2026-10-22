@@ -1,0 +1,49 @@
+#!/bin/sh
+
+set -e
+
+
+php_enable() { return 0; }
+
+if [ "$1" = "remove" ]; then
+    if [ -e /usr/lib/php/php-maintscript-helper ]; then
+	. /usr/lib/php/php-maintscript-helper
+
+	mods=$(phpquery -M -v 8.4)
+	for mod in $mods; do
+	    php_invoke dismod 8.4 fpm $mod
+	done
+    else
+	for mod in /etc/php/8.4/fpm/conf.d/*.ini; do 
+	    rm -f $mod
+	    for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist;  do
+		rm -f $mod$ext
+	    done
+	done
+    fi
+fi
+
+# Automatically added by dh_installinit/13.24.2
+if [ -z "$DPKG_ROOT" ] && [ "$1" = remove ] && [ -x "/etc/init.d/php8.4-fpm" ] ; then
+	invoke-rc.d php8.4-fpm stop || exit 1
+fi
+# End automatically added section
+# Automatically added by dh_installdeb/13.24.2
+dpkg-maintscript-helper rm_conffile /etc/init/php8.4-fpm.conf 7.4.3-4\~ php8.4-fpm -- "$@"
+# End automatically added section
+# Automatically added by dh_apache2/UNDECLARED
+if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ] ; then
+	if php_enable; then
+		if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
+			. /usr/share/apache2/apache2-maintscript-helper
+
+			for conf in php8.4-fpm  ; do
+				apache2_invoke disconf $conf  || exit 1
+			done
+		fi
+	fi
+fi
+# End automatically added section
+
+
+exit 0
